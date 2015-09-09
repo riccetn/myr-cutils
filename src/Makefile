@@ -21,6 +21,9 @@ CFLAGS=-Weverything -Werror -g
 OBJECTS=err.o\
 		progname.o
 
+INCLUDEDIR=../include
+CFLAGS+=-I$(INCLUDEDIR)
+
 TARGET=libmyrcutil.a
 
 .PHONY: all clean
@@ -40,5 +43,5 @@ $(TARGET): $(OBJECTS) Makefile
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-err.o: err.c err.h compiler.h progname.h Makefile
-progname.o: progname.c progname.h progname_main.h Makefile
+err.o: err.c $(INCLUDEDIR)/err.h $(INCLUDEDIR)/compiler.h $(INCLUDEDIR)/progname.h Makefile
+progname.o: progname.c $(INCLUDEDIR)/progname.h $(INCLUDEDIR)/progname_main.h Makefile

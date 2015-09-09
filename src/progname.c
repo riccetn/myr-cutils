@@ -10,8 +10,8 @@
  * You should have received a copy of the CC0 Public Domain Dedication along
  * with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
-#include "progname.h"
-#include "progname_main.h"
+#include <progname.h>
+#include <progname_main.h>
 
 static const char *local_progname = "unknown_progname";
 
