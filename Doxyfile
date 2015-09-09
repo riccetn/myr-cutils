@@ -1,0 +1,15 @@
+## doxygen configuration file see <http://www.stack.nl/~dimitri/doxygen/manual/config.html>
+
+PROJECT_NAME="Myr C Utilities Library"
+OPTIMIZE_OUTPUT_FOR_C=YES
+
+EXTRACT_ALL=YES
+INPUT=include
+FILE_PATTERNS=*.h
+
+MACRO_EXPANSION=YES
+
+OUTPUT_DIRECTORY=doc
+GENERATE_LATEX=NO
+
+GENERATE_MAN=YES

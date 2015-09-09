@@ -1,2 +1,4 @@
 *.o
 src/libmyrcutil.a
+doc/html/*
+doc/man/*
