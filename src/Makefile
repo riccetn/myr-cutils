@@ -18,7 +18,9 @@ OBJECTS=err.o\
 PIC_OBJECTS=$(OBJECTS:%.o=%.pic)
 
 STATIC=libmyrcutil.a
-SHARED=libmyrcutils.so.0
+SHARED=libmyrcutil.so.0.0.1
+SONAME=libmyrcutil.so.0
+LIBNAME=libmyrcutil.so
 
 INCLUDEDIR=../include
 CFLAGS+=-I$(INCLUDEDIR)
@@ -34,12 +36,15 @@ static: $(STATIC)
 
 clean:
 	$(RM) $(OBJECTS)
-	$(RM) $(TARGET)
+	$(RM) $(PIC_OBJECTS)
+	$(RM) $(STATIC) $(SHARED)
 
-install:
+install: $(STATIC) $(SHARED)
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(LIBDIR)
-	[ -e $(STATIC) ] && $(INSTALL) -m 0644 $(STATIC) $(DESTDIR)$(LIBDIR)
-	[ -e $(SHARED) ] && $(INSTALL) -m 0755 $(SHARED) $(DESTDIR)$(LIBDIR)
+	$(INSTALL) -m 0644 $(STATIC) $(DESTDIR)$(LIBDIR)
+	$(INSTALL) -m 0755 $(SHARED) $(DESTDIR)$(LIBDIR)
+	$(LN) $(SHARED) $(DESTDIR)$(LIBDIR)/$(SONAME)
+	$(LN) $(SHARED) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
 
 $(STATIC): $(OBJECTS) Makefile
 	$(RM) $@
@@ -47,7 +52,7 @@ $(STATIC): $(OBJECTS) Makefile
 	$(RANLIB) $@
 
 $(SHARED): $(PIC_OBJECTS) Makefile
-	$(CCLD) -shared $(LDFLAGS) -Wl,-soname=$@ -o $@ $(PIC_OBJECTS)
+	$(CCLD) -shared $(LDFLAGS) -Wl,-soname=$(SONAME) -o $@ $(PIC_OBJECTS)
 
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<

@@ -16,6 +16,7 @@ RM=rm -f
 AR=ar
 RANLIB=ranlib
 INSTALL=install
+LN=ln -s
 
 CFLAGS=-Weverything -Werror -g
 

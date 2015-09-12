@@ -25,5 +25,5 @@ all:
 clean:
 
 install:
-	$(INSTALL) -m 0755 -d $(DESTDIR)$(PREFIX)/include
-	$(INSTALL) -m 0644 $(HEADERS) $(DESTDIR)$(PREFIX)/include
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(PREFIX)/include/myr
+	$(INSTALL) -m 0644 $(HEADERS) $(DESTDIR)$(PREFIX)/include/myr
