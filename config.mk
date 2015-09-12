@@ -15,5 +15,10 @@ CCLD=clang
 RM=rm -f
 AR=ar
 RANLIB=ranlib
+INSTALL=install
 
 CFLAGS=-Weverything -Werror -g
+
+DESTDIR=/
+PREFIX=/usr/local
+LIBDIR=$(PREFIX)/lib

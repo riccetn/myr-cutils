@@ -20,7 +20,7 @@ CFLAGS+=-I$(INCLUDEDIR)
 
 TARGET=libmyrcutil.a
 
-.PHONY: all clean
+.PHONY: all clean install
 .SUFFIXES: .c .o
 
 all: $(TARGET)
@@ -28,6 +28,10 @@ all: $(TARGET)
 clean:
 	$(RM) $(OBJECTS)
 	$(RM) $(TARGET)
+
+install:
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(LIBDIR)
+	$(INSTALL) -m 0644 $(TARGET) $(DESTDIR)$(LIBDIR)
 
 $(TARGET): $(OBJECTS) Makefile
 	$(RM) $@

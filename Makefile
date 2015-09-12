@@ -1,14 +1,19 @@
 SUBDIRS=src\
 		include
 
-CLEAN_SUBDIRS=$(SUBDIRS:%=%-clean)
+SUBDIRS_CLEAN=$(SUBDIRS:%=%-clean)
+SUBDIRS_INSTALL=$(SUBDIRS:%=%-install)
 
-.PHONY: all clean $(SUBDIRS) $(CLEAN_SUBDIRS)
+.PHONY: all clean $(SUBDIRS) $(SUBDIRS_CLEAN) $(SUBDIRS_INSTALL)
 
 all: $(SUBDIRS)
 $(SUBDIRS):
 	$(MAKE) -C $@
 
-clean: $(CLEAN_SUBDIRS)
-$(CLEAN_SUBDIRS):
+clean: $(SUBDIRS_CLEAN)
+$(SUBDIRS_CLEAN):
 	$(MAKE) -C $(@:%-clean=%) clean
+
+install: $(SUBDIRS_INSTALL)
+$(SUBDIRS_INSTALL):
+	$(MAKE) -C $(@:%-install=%) install
