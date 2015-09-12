@@ -10,17 +10,24 @@
 # You should have received a copy of the CC0 Public Domain Dedication along
 # with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
+include config.mk
+
 SUBDIRS=src\
 		include
 
 SUBDIRS_CLEAN=$(SUBDIRS:%=%-clean)
 SUBDIRS_INSTALL=$(SUBDIRS:%=%-install)
 
-.PHONY: all clean $(SUBDIRS) $(SUBDIRS_CLEAN) $(SUBDIRS_INSTALL)
+.PHONY: all build clean doc $(SUBDIRS) $(SUBDIRS_CLEAN) $(SUBDIRS_INSTALL)
 
-all: $(SUBDIRS)
+build: $(SUBDIRS)
 $(SUBDIRS):
 	$(MAKE) -C $@
+
+all: build doc
+
+doc:
+	$(DOXYGEN)
 
 static:
 	$(MAKE) -C src static
