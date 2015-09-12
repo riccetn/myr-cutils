@@ -37,5 +37,5 @@ $(TARGET): $(OBJECTS) Makefile
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-err.o: err.c $(INCLUDEDIR)/err.h $(INCLUDEDIR)/compiler.h $(INCLUDEDIR)/progname.h Makefile
-progname.o: progname.c $(INCLUDEDIR)/progname.h $(INCLUDEDIR)/progname_main.h Makefile
+err.o: err.c $(INCLUDEDIR)/myr/err.h $(INCLUDEDIR)/myr/compiler.h $(INCLUDEDIR)/myr/progname.h Makefile
+progname.o: progname.c $(INCLUDEDIR)/myr/progname.h $(INCLUDEDIR)/myr/progname_main.h Makefile
