@@ -15,15 +15,22 @@ include ../config.mk
 OBJECTS=err.o\
 		progname.o
 
+PIC_OBJECTS=$(OBJECTS:%.o=%.pic)
+
+STATIC=libmyrcutil.a
+SHARED=libmyrcutils.so.0
+
 INCLUDEDIR=../include
 CFLAGS+=-I$(INCLUDEDIR)
 
-TARGET=libmyrcutil.a
-
 .PHONY: all clean install
-.SUFFIXES: .c .o
+.SUFFIXES: .c .o .pic
 
-all: $(TARGET)
+all: static shared
+
+shared: $(SHARED)
+
+static: $(STATIC)
 
 clean:
 	$(RM) $(OBJECTS)
@@ -31,15 +38,22 @@ clean:
 
 install:
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(LIBDIR)
-	$(INSTALL) -m 0644 $(TARGET) $(DESTDIR)$(LIBDIR)
+	[ -e $(STATIC) ] && $(INSTALL) -m 0644 $(STATIC) $(DESTDIR)$(LIBDIR)
+	[ -e $(SHARED) ] && $(INSTALL) -m 0755 $(SHARED) $(DESTDIR)$(LIBDIR)
 
-$(TARGET): $(OBJECTS) Makefile
+$(STATIC): $(OBJECTS) Makefile
 	$(RM) $@
 	$(AR) cr $@ $(OBJECTS)
 	$(RANLIB) $@
 
+$(SHARED): $(PIC_OBJECTS) Makefile
+	$(CCLD) -shared $(LDFLAGS) -Wl,-soname=$@ -o $@ $(PIC_OBJECTS)
+
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-err.o: err.c $(INCLUDEDIR)/myr/err.h $(INCLUDEDIR)/myr/compiler.h $(INCLUDEDIR)/myr/progname.h Makefile
-progname.o: progname.c $(INCLUDEDIR)/myr/progname.h $(INCLUDEDIR)/myr/progname_main.h Makefile
+.c.pic:
+	$(CC) -fPIC $(CFLAGS) -c -o $@ $<
+
+err.o err.pic: err.c $(INCLUDEDIR)/myr/err.h $(INCLUDEDIR)/myr/compiler.h $(INCLUDEDIR)/myr/progname.h Makefile
+progname.o progname.pic: progname.c $(INCLUDEDIR)/myr/progname.h $(INCLUDEDIR)/myr/progname_main.h Makefile

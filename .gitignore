@@ -1,4 +1,6 @@
 *.o
-src/libmyrcutil.a
+*.pic
+*.a
+*.so*
 doc/html/*
 doc/man/*

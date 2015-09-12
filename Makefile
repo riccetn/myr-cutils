@@ -22,6 +22,12 @@ all: $(SUBDIRS)
 $(SUBDIRS):
 	$(MAKE) -C $@
 
+static:
+	$(MAKE) -C src static
+
+shared:
+	$(MAKE) -C src shared
+
 clean: $(SUBDIRS_CLEAN)
 $(SUBDIRS_CLEAN):
 	$(MAKE) -C $(@:%-clean=%) clean
