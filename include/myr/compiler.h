@@ -25,7 +25,7 @@
 
 #if defined(__GNUC__) || __has_attribute(format)
 # define FORMAT(archtype, string_index, first_to_check) __attribute__((format(archtype, string_index, first_to_check)))
-#elif
+#else
 # define FORMAT(archtype, string_index, first_to_check)
 #endif
 
