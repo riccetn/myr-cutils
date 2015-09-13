@@ -15,9 +15,9 @@
 
 #include "compiler.h"
 
-void NORETURN err(int ec, const char *format, ...) FORMAT(printf, 2, 3);
-void NORETURN xerr(int ec, const char *format, ...) FORMAT(printf, 2, 3);
+void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
+void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
 void warn(const char *format, ...) FORMAT(printf, 1, 2);
-void xwarn(const char *format, ...) FORMAT(printf, 1, 2);
+void warn_errno(const char *format, ...) FORMAT(printf, 1, 2);
 
 #endif

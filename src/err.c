@@ -20,7 +20,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void NORETURN err(int ec, const char *format, ...) {
+void NORETURN fatal_errno(int ec, const char *format, ...) {
 	va_list ap;
 	int errnum = errno;
 
@@ -32,7 +32,7 @@ void NORETURN err(int ec, const char *format, ...) {
 	exit(ec);
 }
 
-void NORETURN xerr(int ec, const char *format, ...) {
+void NORETURN fatal(int ec, const char *format, ...) {
 	va_list ap;
 
 	fprintf(stderr, "%s:", progname());
@@ -43,7 +43,7 @@ void NORETURN xerr(int ec, const char *format, ...) {
 	exit(ec);
 }
 
-void warn(const char *format, ...) {
+void warn_errno(const char *format, ...) {
 	va_list ap;
 	int errnum = errno;
 
@@ -54,7 +54,7 @@ void warn(const char *format, ...) {
 	fprintf(stderr, ":%s (%d)\n", strerror(errnum), errnum);
 }
 
-void xwarn(const char *format, ...) {
+void warn(const char *format, ...) {
 	va_list ap;
 
 	fprintf(stderr, "%s:", progname());
