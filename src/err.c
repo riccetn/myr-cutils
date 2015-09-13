@@ -43,6 +43,29 @@ void NORETURN fatal(int ec, const char *format, ...) {
 	exit(ec);
 }
 
+void NORETURN bug_errno(const char *format, ...) {
+	va_list ap;
+	int errnum = errno;
+
+	fprintf(stderr, "%s:", progname());
+	va_start(ap, format);
+	vfprintf(stderr, format, ap);
+	va_end(ap);
+	fprintf(stderr, ":%s (%d)\n", strerror(errnum), errnum);
+	abort();
+}
+
+void NORETURN bug(const char *format, ...) {
+	va_list ap;
+
+	fprintf(stderr, "%s:", progname());
+	va_start(ap, format);
+	vfprintf(stderr, format, ap);
+	va_end(ap);
+	fprintf(stderr, "\n");
+	abort();
+}
+
 void warn_errno(const char *format, ...) {
 	va_list ap;
 	int errnum = errno;

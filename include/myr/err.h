@@ -17,6 +17,8 @@
 
 void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
 void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
+void NORETURN bug(const char *format, ...) FORMAT(printf, 1, 2);
+void NORETURN bug_errno(const char *format, ...) FORMAT(printf, 1, 2);
 void warn(const char *format, ...) FORMAT(printf, 1, 2);
 void warn_errno(const char *format, ...) FORMAT(printf, 1, 2);
 
