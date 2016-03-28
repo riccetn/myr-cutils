@@ -19,21 +19,21 @@
 static inline void *xmalloc(size_t sz) {
 	void *block = malloc(sz);
 	if(!block)
-		err(1, "xmalloc");
+		fatal(1, "xmalloc");
 	return block;
 }
 
 static inline void *xcalloc(size_t nmemb, size_t sz) {
 	void *block = calloc(nmemb, sz);
 	if(!block)
-		err(1, "xcalloc");
+		fatal(1, "xcalloc");
 	return block;
 }
 
 static inline void *xrealloc(void *block, size_t sz) {
 	void *nblock = realloc(block, sz);
 	if(!nblock)
-		err(1, "xrealloc");
+		fatal(1, "xrealloc");
 	return nblock;
 }
 
