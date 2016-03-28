@@ -18,6 +18,8 @@ HEADERS=myr/compiler.h\
 		myr/progname.h\
 		myr/progname_main.h
 
+HEADERS_inline=myr/inline/err.h
+
 .PHONY: all clean install
 
 all:
@@ -27,3 +29,5 @@ clean:
 install:
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(PREFIX)/include/myr
 	$(INSTALL) -m 0644 $(HEADERS) $(DESTDIR)$(PREFIX)/include/myr
+	$(INSTALL) -m 0755 -d $(DESTDIR)$(PREFIX)/include/myr/inline
+	$(INSTALL) -m 0644 $(HEADERS_inline) $(DESTDIR)$(PREFIX)/include/myr/inline

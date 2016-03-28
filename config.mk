@@ -16,7 +16,7 @@ RM=rm -f
 AR=ar
 RANLIB=ranlib
 INSTALL=install
-LN=ln -s
+LN=ln -sf
 DOXYGEN=doxygen
 
 CFLAGS=-std=c99 -Weverything -Werror -g
