@@ -10,8 +10,8 @@
  * You should have received a copy of the CC0 Public Domain Dedication along
  * with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
-#ifndef ERR_H
-#define ERR_H
+#ifndef MYR_ERR_H
+#define MYR_ERR_H
 /**
  * \file myr/err.h
  */

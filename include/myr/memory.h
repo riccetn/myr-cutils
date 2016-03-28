@@ -10,8 +10,8 @@
  * You should have received a copy of the CC0 Public Domain Dedication along
  * with this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
  */
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef MYR_MEMORY_H
+#define MYR_MEMORY_H
 
 #include "err.h"
 #include <stdlib.h>
