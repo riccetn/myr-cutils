@@ -28,7 +28,6 @@
  * \param ec exit code
  * \param format printf-style format string
  * \param ... parameters for format string
- * \return This function never returns
  */
 void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
 
@@ -43,7 +42,6 @@ void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
  * \param ec exit code
  * \param format printf-style format string
  * \param ... parameters for format string
- * \return This function never returns
  */
 void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
 
@@ -56,7 +54,6 @@ void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
  *
  * \param format printf-style format string
  * \param ... parameters for format string
- * \return This function never returns
  */
 void NORETURN bug(const char *format, ...) FORMAT(printf, 1, 2);
 
@@ -70,7 +67,6 @@ void NORETURN bug(const char *format, ...) FORMAT(printf, 1, 2);
  *
  * \param format printf-style format string
  * \param ... parameters for format string
- * \return This function never returns
  */
 void NORETURN bug_errno(const char *format, ...) FORMAT(printf, 1, 2);
 
