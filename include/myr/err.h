@@ -29,7 +29,7 @@
  * \param format printf-style format string
  * \param ... parameters for format string
  */
-void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
+inline void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
 
 /**
  * \fn void NORETURN fatal_errno(int ec, const char *format, ...)
@@ -43,7 +43,7 @@ void NORETURN fatal(int ec, const char *format, ...) FORMAT(printf, 2, 3);
  * \param format printf-style format string
  * \param ... parameters for format string
  */
-void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
+inline void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
 
 /**
  * \fn void NORETURN bug(const char *format, ...)
@@ -55,7 +55,7 @@ void NORETURN fatal_errno(int ec, const char *format, ...) FORMAT(printf, 2, 3);
  * \param format printf-style format string
  * \param ... parameters for format string
  */
-void NORETURN bug(const char *format, ...) FORMAT(printf, 1, 2);
+inline void NORETURN bug(const char *format, ...) FORMAT(printf, 1, 2);
 
 /**
  * \fn void NORETURN bug_errno(const char *format, ...)
@@ -68,7 +68,7 @@ void NORETURN bug(const char *format, ...) FORMAT(printf, 1, 2);
  * \param format printf-style format string
  * \param ... parameters for format string
  */
-void NORETURN bug_errno(const char *format, ...) FORMAT(printf, 1, 2);
+inline void NORETURN bug_errno(const char *format, ...) FORMAT(printf, 1, 2);
 
 /**
  * \fn void warn(const char *format, ...)
@@ -80,7 +80,7 @@ void NORETURN bug_errno(const char *format, ...) FORMAT(printf, 1, 2);
  * \param format printf-style format string
  * \param ... parameters for format string
  */
-void warn(const char *format, ...) FORMAT(printf, 1, 2);
+inline void warn(const char *format, ...) FORMAT(printf, 1, 2);
 
 /**
  * \fn void warn_errno(const char *format, ...)
@@ -93,6 +93,12 @@ void warn(const char *format, ...) FORMAT(printf, 1, 2);
  * \param format printf-style format string
  * \param ... parameters for format string
  */
-void warn_errno(const char *format, ...) FORMAT(printf, 1, 2);
+inline void warn_errno(const char *format, ...) FORMAT(printf, 1, 2);
+
+#ifndef MYR_NO_INLINE_INCLUDE
+# include "inline/err.h"
+#endif
+
+#undef INLINE
 
 #endif

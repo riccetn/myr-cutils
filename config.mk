@@ -19,7 +19,7 @@ INSTALL=install
 LN=ln -s
 DOXYGEN=doxygen
 
-CFLAGS=-Weverything -Werror -g
+CFLAGS=-std=c99 -Weverything -Werror -g
 
 DESTDIR=/
 PREFIX=/usr/local
