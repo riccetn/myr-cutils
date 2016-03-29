@@ -24,12 +24,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 inline void NORETURN fatal_errno(int ec, const char *format, ...) {
 	va_list ap;
 	int errnum = errno;
 
-	fprintf(stderr, "%s:", progname());
+	fprintf(stderr, "%s(%d) [FATAL] ", progname(), (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
@@ -40,7 +41,7 @@ inline void NORETURN fatal_errno(int ec, const char *format, ...) {
 inline void NORETURN fatal(int ec, const char *format, ...) {
 	va_list ap;
 
-	fprintf(stderr, "%s:", progname());
+	fprintf(stderr, "%s(%d) [FATAL] ", progname(), (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
@@ -52,7 +53,7 @@ inline void NORETURN bug_errno(const char *format, ...) {
 	va_list ap;
 	int errnum = errno;
 
-	fprintf(stderr, "%s:", progname());
+	fprintf(stderr, "%s(%d) [BUG] ", progname(), (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
@@ -63,7 +64,7 @@ inline void NORETURN bug_errno(const char *format, ...) {
 inline void NORETURN bug(const char *format, ...) {
 	va_list ap;
 
-	fprintf(stderr, "%s:", progname());
+	fprintf(stderr, "%s(%d) [BUG] ", progname() (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
@@ -75,7 +76,7 @@ inline void warn_errno(const char *format, ...) {
 	va_list ap;
 	int errnum = errno;
 
-	fprintf(stderr, "%s:", progname());
+	fprintf(stderr, "%s(%d) [WARN] ", progname(), (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
@@ -85,7 +86,7 @@ inline void warn_errno(const char *format, ...) {
 inline void warn(const char *format, ...) {
 	va_list ap;
 
-	fprintf(stderr, "%s:", progname());
+	fprintf(stderr, "%s(%d) [WARN] ", progname(), (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
