@@ -17,7 +17,10 @@
 # define __has_attribute(x) 0
 #endif
 
-#if defined(__GNUC__) || __has_attribute(noreturn)
+#if __STDC_VERSION__ >= 201112L
+# include <stdnoreturn.h>
+# define NORETURN noreturn
+#elif defined(__GNUC__) || __has_attribute(noreturn)
 # define NORETURN __attribute__((noreturn))
 #else
 # define NORETURN
