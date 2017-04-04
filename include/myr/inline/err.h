@@ -80,7 +80,7 @@ inline void NORETURN bug_errno(const char *format, ...) {
 inline void NORETURN bug(const char *format, ...) {
 	va_list ap;
 
-	fprintf(stderr, "%s(%d) [BUG] ", progname() (int)getpid());
+	fprintf(stderr, "%s(%d) [BUG] ", progname(), (int)getpid());
 	va_start(ap, format);
 	vfprintf(stderr, format, ap);
 	va_end(ap);
